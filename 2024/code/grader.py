@@ -33,6 +33,7 @@ def import_part(script_path):
         return module
     else:
         print(f"Error: {script_path} not found!")
+        exit(1)
         return None
 
 
@@ -127,4 +128,6 @@ for i in range(times):
     print(f"{i + 1} / {times}")
     sys.stdout.write("\033[F")
 
-print(f"Completed in {round(total2 / times, 3)}s averaged over {times} tries")
+print(f"Completed in {round(total2 / times, 3)}s averaged over {times} tries\n")
+
+print(f"Total: {round((total1 + total2) / 5, 3)}s")
