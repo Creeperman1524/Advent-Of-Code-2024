@@ -2,8 +2,6 @@
 
 > [<- Previous](day07.md) | [Next ->](day09.md)
 
-General comments about the problem
-
 Honestly a pretty easy day compared to the rest so far. Took a little work with the data structures
 but the solution essentialy wrote itself.
 
