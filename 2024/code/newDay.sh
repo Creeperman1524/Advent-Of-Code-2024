@@ -33,8 +33,8 @@ ln -s "Day$day" "current"
 echo "Linked Day$day/ to current/"
 
 # Adds it to the year's README
-# echo "| [Day $dayNoZero: XXXXX](notes/$day.md) |        |        |       |" >> ../README.md
-# echo "Added this Day$dayNoZero to the year's README"
+echo "| [Day $dayNoZero: XXXXX](notes/day$day.md) |        |        |       |" >> ../README.md
+echo "Added this Day$dayNoZero to the year's README"
 
 echo "Good luck!"
 
