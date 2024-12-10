@@ -80,8 +80,9 @@ def search(grid, x, y, visited):
 
 ## Part B
 
-Literally exactly the same as Part A, except it no longer keeps track of visited nodes. I think I might have lucked out here and not
-had any loops in my input, so this could potentially break with the wrong input.
+Literally exactly the same as Part A, except it no longer keeps track of visited nodes. ~~I think I might have lucked out here and not
+had any loops in my input, so this could potentially break with the wrong input.~~ After thinking about it more, there is no possible way for the
+trails to loop, as they always must be increasing so no loop could form.
 
 I definitely should do a deeper dive into how this code words, as I more-or-less just ripped out the visited nodes stuff and prayed it work
 (for reasons I definitely cannot explain)
@@ -134,4 +135,3 @@ def search(grid, x, y):
     return score
 
 ```
-
