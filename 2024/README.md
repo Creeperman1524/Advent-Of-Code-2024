@@ -51,3 +51,4 @@ These contain insights and idea I had while completing each day!
 | [Day 9: Disk Fragmenter](notes/day09.md)       | 0.023s | 14.423s | 14.446s |
 | [Day 10: Hoof It](notes/day10.md)              | 0.002s | 0.002s  | 0.003s  |
 | [Day 11: Plutonian Pebbles](notes/day11.md)    | 0.132s | 0.049s  | 0.181s  |
+| [Day 12: Garden Groups](notes/day12.md)        | 0.04s  | 0.242s  | 0.282s  |
