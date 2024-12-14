@@ -6,10 +6,11 @@ Wow this one was a really weird one. I don't know how I feel about it, and I def
 
 Christmas tree!
 
-|                | Part A  | Part B |  Total  |
-| -------------- | :-----: | :----: | :-----: |
-| Coding Time    | 1:06:38 | 35:31  | 1:27:09 |
-| Execution Time | 0.013s  | 1.107s |  1.12s  |
+|                    | Part A  | Part B |  Total  |
+| ------------------ | :-----: | :----: | :-----: |
+| Coding Time        | 1:06:38 | 35:31  | 1:27:09 |
+| Execution Time     | 0.013s  | 1.107s |  1.12s  |
+| Addendum Exec Time |  < 0s   | 1.107s | 1.107s  |
 
 ## Part A
 
@@ -60,6 +61,54 @@ def solve(input):
         elif (robot[0][0] > sizex // 2) and (robot[0][1] < sizey // 2):
             quads[2] += 1
         elif (robot[0][0] > sizex // 2) and (robot[0][1] > sizey // 2):
+            quads[3] += 1
+
+    safetyFactor = 1
+    for q in quads:
+        safetyFactor *= q
+
+    return safetyFactor
+
+```
+
+### Addendum (12/14/24)
+
+I saw some really easy optimizations that could be made after typing all of the notes, so I wanted to go back and add it!
+
+> [!TIP]
+> Originally, I was treating this like a true particle simulation and going through each position and adding the velocity each iteration. However, since this is a fixed
+> (100) iterations, we can just multiply it to begin with while calculating the robot's positions.
+
+Other optimizations and readability changes include merging all the loops for the robots directly into the parsing, as they operate individually.
+
+This provides a `13x` speedup from `13ms` to `<1ms`! Clearly I have my priorities straight in what problems to optimize.
+
+```python
+def solve(input):
+    quads = [0, 0, 0, 0]
+
+    sizex = 101
+    sizey = 103
+    steps = 100
+
+    # Parses the robots and find the quadrant they end up in
+    for line in input:
+        Px = int(line.split("=")[1].split(",")[0])
+        Py = int(line.split(",")[1].split(" ")[0])
+        Vx = int(line.split("=")[2].split(",")[0])
+        Vy = int(line.split(",")[2])
+
+        X = (Px + Vx * steps) % sizex
+        Y = (Py + Vy * steps) % sizey
+
+        # Calculates the "safest area metric"
+        if X < sizex // 2 and Y < sizey // 2:
+            quads[0] += 1
+        elif X < sizex // 2 and Y > sizey // 2:
+            quads[1] += 1
+        elif X > sizex // 2 and Y < sizey // 2:
+            quads[2] += 1
+        elif X > sizex // 2 and Y > sizey // 2:
             quads[3] += 1
 
     safetyFactor = 1
