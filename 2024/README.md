@@ -56,3 +56,4 @@ These contain insights and idea I had while completing each day!
 | [Day 12: Garden Groups](notes/day12.md)        | 0.04s  | 0.242s  | 0.282s  |
 | [Day 13: Claw Contraption](notes/day13.md)     |  < 0s  |  < 0s   |  < 0s   |
 | [Day 14: Restroom Redoubt](notes/day14.md)     | < 0s\* | 1.107s  | 1.107s  |
+| [Day 15: Warehouse Woes](notes/day15.md)       | 0.003s | 0.007s  | 0.011s  |
