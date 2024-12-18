@@ -59,3 +59,4 @@ These contain insights and idea I had while completing each day!
 | [Day 15: Warehouse Woes](notes/day15.md)         | 0.003s | 0.007s  | 0.011s  |
 | [Day 16: Reindeer Maze](notes/day16.md)          | 0.175s | 0.229s  | 0.404s  |
 | [Day 17: Chronospatial Computer](notes/day17.md) |  < 0s  |  < 0s   |  < 0s   |
+| [Day 18: RAM Run](notes/day18.md)                | 0.138s | 11.660s | 11.798s |
