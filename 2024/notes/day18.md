@@ -5,10 +5,11 @@
 This one was a nice breath of fresh air after all of the difficult problems for the past few days. If I was going for speed, I definitely could've finished this much quicker with
 some dirty code, but I am very happy about it.
 
-|                | Part A | Part B  |  Total  |
-| -------------- | :----: | :-----: | :-----: |
-| Coding Time    | 21:23  |  16:09  |  37:32  |
-| Execution Time | 0.138s | 11.660s | 11.798s |
+|                    | Part A | Part B  |  Total  |
+| ------------------ | :----: | :-----: | :-----: |
+| Coding Time        | 21:23  |  16:09  |  37:32  |
+| Execution Time     | 0.138s | 11.660s | 11.798s |
+| Addendum Exec Time | 0.138s | 5.856s  | 5.993s  |
 
 ## Part A
 
@@ -136,6 +137,94 @@ def solve(input):
                 if (x + dx, y + dy) not in blockers and (x + dx, y + dy) not in visited:
                     queue.put((steps + 1, (x + dx, y + dy)))
                     pathDict[(x + dx, y + dy)] = (x, y)
+
+        if escaped:
+            # Save the new path after a blocker appeared on it
+            bestPath.clear()
+            node = (size - 1, size - 1)
+            while node != (0, 0):
+                bestPath.append(node)
+                node = pathDict[node]
+
+            bestPath.append
+
+        else:
+            # Return the blocker that first stopped our path
+            return (bx, by)
+
+    return "Always possible"
+
+```
+
+### Addendum (12/18/24)
+
+As mentioned above, this small edit only starts calculating paths after 1024 bytes have been released.
+This provides a `2x` speedup from `11.660s` to `5.856s`, as it drastically reduces the search space needed for the problem.
+
+There are also some small readability changes when checking for neighbors.
+
+> [!NOTE]
+> Now this is beginning to borderline "just print the correct answer after getting it separately, duh" from the hardcoding being done, but I'll allow this since any input
+> will also need to pass Part A, meaning this technique is valid for all puzzle inputs.
+
+```python
+from queue import PriorityQueue
+
+
+def solve(input):
+    size = 71
+
+    blockers = []
+    bestPath = []
+    counter = 0
+
+    for line in input:
+        counter += 1
+        bx, by = list(map(int, line.split(",")))
+        blockers.append((bx, by))
+
+        # Part A guarantees bytes up to 1024 have a safe path
+        if counter < 1024:
+            continue
+
+        # Skip simulating new paths for blockers that do not fall on the current path
+        if (bx, by) not in bestPath and len(bestPath) > 0:
+            continue
+
+        # Calculate the best path given the blockers
+        visited = set()
+        queue = PriorityQueue()
+        queue.put((0, (0, 0)))
+        pathDict = {}
+
+        dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        escaped = False
+        while not queue.empty():
+            steps, (x, y) = queue.get()
+
+            # Skip if we already saw this node
+            if (x, y) in visited:
+                continue
+            visited.add((x, y))
+
+            # Found the exit
+            if x == size - 1 and y == size - 1:
+                escaped = True
+                break
+
+            # Add neighbors
+            for dx, dy in dirs:
+                newX, newY = x + dx, y + dy
+                if (
+                    not (0 < newX < size)
+                    or not (0 < newY < size)
+                    or (newX, newY) in blockers
+                    or (newX, newY) in visited
+                ):
+                    continue
+
+                queue.put((steps + 1, (newX, newY)))
+                pathDict[(newX, newY)] = (x, y)
 
         if escaped:
             # Save the new path after a blocker appeared on it
