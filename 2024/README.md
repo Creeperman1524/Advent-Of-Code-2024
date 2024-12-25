@@ -60,3 +60,4 @@ These contain insights and idea I had while completing each day!
 | [Day 16: Reindeer Maze](notes/day16.md)          | 0.175s |  0.229s  | 0.404s  |
 | [Day 17: Chronospatial Computer](notes/day17.md) |  < 0s  |   < 0s   |  < 0s   |
 | [Day 18: RAM Run](notes/day18.md)                | 0.138s | 5.856s\* | 5.993s  |
+| [Day 19: Linen Layout](notes/day19.md)           | 0.246s |  0.625s  | 0.871s  |
